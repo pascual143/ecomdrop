@@ -1,0 +1,32 @@
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .copyright {
+    margin-bottom: 10px;
+    font-size: 0.9em;
+  }
+  
+  .footerNav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .footerNav li {
+    margin: 0 15px;
+  }
+  
+  .footerNav a {
+    color: #eee;
+    text-decoration: none;
+  }
+  
+  .footerNav a:hover {
+    color: #fff;
+  }

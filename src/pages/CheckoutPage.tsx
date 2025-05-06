@@ -1,48 +1,70 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '../app/store';
-import { selectCartItems, selectCartTotal } from '../store/selectors/cartSelectors';
-import styles from './CheckoutPage.module.css'; // O tu sistema de estilos
+import { RootState } from './../app/store';
+import { selectCartItems, selectCartTotal } from './../store/selectors/cartSelectors';
+import { Link } from 'react-router-dom';
+import styles from './CheckoutPage.module.css';
 
 const CheckoutPage: React.FC = () => {
   const cartItems = useSelector(selectCartItems);
   const cartTotal = useSelector(selectCartTotal);
 
   const handleProceedToCheckout = () => {
-    // En una integración real con Printful, aquí construirías una URL
-    // que redirige al usuario a su checkout con los items del carrito.
-    // Esto generalmente implica usar la API de Printful para crear un "draft order"
-    // y obtener una URL de checkout.
-
     alert('Simulando redirección al checkout de Printful...');
-    // window.location.href = 'URL_DEL_CHECKOUT_DE_PRINTFUL';
+    // En una integración real, aquí construirías la URL de Printful.
   };
 
   if (cartItems.length === 0) {
-    return <div className={styles.emptyCheckout}>El carrito está vacío.</div>;
+    return (
+      <div className={styles.emptyCheckout}>
+        <h2>Tu carrito está vacío</h2>
+        <p>¿Qué tal si echas un vistazo a nuestros <Link to="/catalogo">productos</Link>?</p>
+      </div>
+    );
   }
 
   return (
     <div className={styles.checkout}>
       <h2>Checkout</h2>
-      <div className={styles.summary}>
+      <div className={styles.orderSummary}>
         <h3>Resumen del Pedido</h3>
         <ul className={styles.itemList}>
           {cartItems.map((item) => (
             <li key={item.product.id} className={styles.item}>
-              {item.product.name} ({item.quantity} x ${item.product.price.toFixed(2)}) = $
-              {(item.quantity * item.product.price).toFixed(2)}
+              <div className={styles.itemDetails}>
+                <img
+                  src={item.product.imageUrl}
+                  alt={item.product.name}
+                  className={styles.itemImage}
+                />
+                <div className={styles.itemInfo}>
+                  <p className={styles.itemName}>{item.product.name}</p>
+                  <p className={styles.itemPrice}>${item.product.price.toFixed(2)}</p>
+                </div>
+              </div>
+              <span className={styles.itemQuantity}>Cantidad: {item.quantity}</span>
+              <span className={styles.itemTotal}>
+                Subtotal: ${(item.quantity * item.product.price).toFixed(2)}
+              </span>
             </li>
           ))}
         </ul>
         <div className={styles.total}>
-          <strong>Total: ${cartTotal.toFixed(2)}</strong>
+          <strong>Total del Pedido: ${cartTotal.toFixed(2)}</strong>
         </div>
       </div>
-      <button className={styles.proceedButton} onClick={handleProceedToCheckout}>
-        Proceder al Checkout
-      </button>
-      {/* Podrías añadir aquí información sobre el envío y el pago (gestionado por Printful) */}
+      <div className={styles.checkoutActions}>
+        <button className={styles.proceedButton} onClick={handleProceedToCheckout}>
+          Proceder al Checkout
+        </button>
+        <Link to="/carrito" className={styles.backToCart}>
+          Volver al Carrito
+        </Link>
+      </div>
+      <div className={styles.printfulInfo}>
+        <p>El pago y envío serán gestionados por Printful.</p>
+        {/* Podrías añadir un logo de Printful aquí */}
+      </div>
     </div>
   );
 };

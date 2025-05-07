@@ -4,6 +4,7 @@ import { RootState } from './../app/store';
 import { selectCartItems, selectCartTotal } from './../store/selectors/cartSelectors';
 import { Link } from 'react-router-dom';
 import styles from './CheckoutPage.module.css';
+import CartItemDetails from '../components/cart/CartItemDetails';
 
 const CheckoutPage: React.FC = () => {
   const cartItems = useSelector(selectCartItems);
@@ -11,7 +12,7 @@ const CheckoutPage: React.FC = () => {
 
   const handleProceedToCheckout = () => {
     alert('Simulando redirección al checkout de Printful...');
-    // En una integración real, aquí construirías la URL de Printful.
+    // Integración real con Printful aquí.
   };
 
   if (cartItems.length === 0) {
@@ -31,17 +32,7 @@ const CheckoutPage: React.FC = () => {
         <ul className={styles.itemList}>
           {cartItems.map((item) => (
             <li key={item.product.id} className={styles.item}>
-              <div className={styles.itemDetails}>
-                <img
-                  src={item.product.imageUrl}
-                  alt={item.product.name}
-                  className={styles.itemImage}
-                />
-                <div className={styles.itemInfo}>
-                  <p className={styles.itemName}>{item.product.name}</p>
-                  <p className={styles.itemPrice}>${item.product.price.toFixed(2)}</p>
-                </div>
-              </div>
+              <CartItemDetails item={item} />
               <span className={styles.itemQuantity}>Cantidad: {item.quantity}</span>
               <span className={styles.itemTotal}>
                 Subtotal: ${(item.quantity * item.product.price).toFixed(2)}
@@ -63,7 +54,6 @@ const CheckoutPage: React.FC = () => {
       </div>
       <div className={styles.printfulInfo}>
         <p>El pago y envío serán gestionados por Printful.</p>
-        {/* Podrías añadir un logo de Printful aquí */}
       </div>
     </div>
   );

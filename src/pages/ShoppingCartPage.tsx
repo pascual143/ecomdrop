@@ -4,6 +4,7 @@ import { RootState, AppDispatch } from './../app/store';
 import { selectCartItems, selectCartTotal } from './../store/selectors/cartSelectors';
 import { removeItem, updateQuantity } from './../store/reducers/cartReducer';
 import { Link } from 'react-router-dom';
+import CartItemDetails from '../components/cart/CartItemDetails';
 import styles from './ShoppingCartPage.module.css';
 
 const ShoppingCartPage: React.FC = () => {
@@ -36,13 +37,7 @@ const ShoppingCartPage: React.FC = () => {
       <ul className={styles.itemList}>
         {cartItems.map((item) => (
           <li key={item.product.id} className={styles.item}>
-            <Link to={`/producto/${item.product.id}`} className={styles.itemLink}>
-              <img src={item.product.imageUrl} alt={item.product.name} className={styles.itemImage} />
-              <div className={styles.itemInfo}>
-                <h3 className={styles.itemName}>{item.product.name}</h3>
-                <p className={styles.itemPrice}>${item.product.price.toFixed(2)}</p>
-              </div>
-            </Link>
+            <CartItemDetails item={item} />
             <div className={styles.quantityControl}>
               <label htmlFor={`quantity-${item.product.id}`}>Cantidad:</label>
               <input

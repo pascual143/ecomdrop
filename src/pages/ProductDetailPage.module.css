@@ -52,3 +52,16 @@
   .addToCartButton:hover {
     background-color: #1e7e34;
   }
+
+  .loadingContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px; /* Asegura que haya espacio para el spinner */
+  }
+  
+  .error {
+    color: red;
+    padding: 20px;
+    text-align: center;
+  }

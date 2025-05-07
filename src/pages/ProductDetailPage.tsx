@@ -6,6 +6,7 @@ import { Product } from '../store/types';
 import { addItem } from '../store/reducers/cartReducer';
 import printfulService from '../services/printfulService';
 import styles from './ProductDetailPage.module.css';
+import LoadingSpinner from '../components/common/LoadingSpinner';
 
 const ProductDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -22,7 +23,7 @@ const ProductDetailPage: React.FC = () => {
           setProduct(data);
           setLoading(false);
         } catch (err: any) {
-          setError('Error al cargar los detalles del producto.');
+          setError('Error al cargar los detalles del producto. Por favor, intenta de nuevo más tarde.');
           setLoading(false);
         }
       }
@@ -38,11 +39,15 @@ const ProductDetailPage: React.FC = () => {
   };
 
   if (loading) {
-    return <div>Cargando detalles del producto...</div>;
+    return (
+      <div className={styles.loadingContainer}> {/* Centrar el spinner */}
+        <LoadingSpinner />
+      </div>
+    );
   }
 
   if (error) {
-    return <div>{error}</div>;
+    return <div className={styles.error}>{error}</div>;
   }
 
   if (!product) {

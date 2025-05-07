@@ -1,0 +1,39 @@
+.priceRangeFilter {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+  }
+  
+  .inputs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .inputs label {
+    display: inline-block;
+    width: 40px;
+    text-align: right;
+  }
+  
+  .inputs input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100px;
+  }
+  
+  .priceRangeFilter button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+  }
+  
+  .priceRangeFilter button:hover {
+    background-color: #0056b3;
+  }

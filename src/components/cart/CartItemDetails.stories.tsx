@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react';
+import { Meta, StoryFn } from '@storybook/react';
 import CartItemDetails from './CartItemDetails';
 import { Product } from '../../store/types';
 import { CartItem } from '../../store/reducers/cartReducer';
@@ -11,7 +11,7 @@ export default {
     },
   } as Meta<typeof CartItemDetails>; // Usa Meta en lugar de ComponentMeta
   
-  const Template: Story<typeof CartItemDetails> = (args: any) => <CartItemDetails item={args.item} />;
+  const Template: StoryFn<typeof CartItemDetails> = (args: any) => <CartItemDetails item={args.item} />;
 
 const sampleProduct: Product = {
   id: 'sample-123',

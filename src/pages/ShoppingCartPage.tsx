@@ -5,6 +5,7 @@ import { selectCartItems, selectCartTotal } from './../store/selectors/cartSelec
 import { removeItem, updateQuantity } from './../store/reducers/cartReducer';
 import { Link } from 'react-router-dom';
 import CartItemDetails from '../components/cart/CartItemDetails';
+import QuantityControl from '../components/common/QuantityControl';
 import styles from './ShoppingCartPage.module.css';
 
 const ShoppingCartPage: React.FC = () => {
@@ -40,13 +41,10 @@ const ShoppingCartPage: React.FC = () => {
             <CartItemDetails item={item} />
             <div className={styles.quantityControl}>
               <label htmlFor={`quantity-${item.product.id}`}>Cantidad:</label>
-              <input
-                type="number"
-                id={`quantity-${item.product.id}`}
+              <QuantityControl
                 value={item.quantity}
-                min="1"
-                onChange={(e) => handleQuantityChange(item.product.id, parseInt(e.target.value))}
-                className={styles.quantityInput}
+                min={1}
+                onChange={(newQuantity) => handleQuantityChange(item.product.id, newQuantity)}
               />
             </div>
             <button className={styles.removeButton} onClick={() => handleRemoveItem(item.product.id)}>

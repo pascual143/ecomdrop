@@ -1,0 +1,27 @@
+.quantityControl {
+    display: flex;
+    align-items: center;
+  }
+  
+  .button {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 0.9em;
+  }
+  
+  .button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .input {
+    width: 40px;
+    padding: 5px;
+    margin: 0 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: center;
+    font-size: 0.9em;
+  }
